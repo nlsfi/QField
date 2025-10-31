@@ -7,7 +7,7 @@ on:
       - release-**
   pull_request:
   release:
-    types: ['published']
+    types: ['created', 'edited']
   workflow_dispatch:
 
 concurrency:
@@ -146,21 +146,21 @@ jobs:
             ${{ env.CMAKE_BUILD_DIR }}/_CPack_Packages/**/*.log
             ${{ env.CMAKE_BUILD_DIR }}/CMakeCache.txt
 
-      - name: 🎭 Sign
-        if: ( github.event_name == 'release'  && startsWith(github.ref, 'refs/tags/v') ) || github.event_name == 'workflow_dispatch' && env.ARTIFACT_NAME != null
-        uses: azure/trusted-signing-action@v0.5.11
-        with:
-          azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          azure-client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-          endpoint: https://weu.codesigning.azure.net/
-          code-signing-account-name: OPENGISch
-          certificate-profile-name: OPENGISch
-          files-folder: ${{ env.CMAKE_BUILD_DIR }}
-          files-folder-filter: exe,msi
-          file-digest: SHA256
-          timestamp-rfc3161: http://timestamp.acs.microsoft.com
-          timestamp-digest: SHA256
+      # - name: 🎭 Sign
+      #   if: ( github.event_name == 'release'  && startsWith(github.ref, 'refs/tags/v') ) || github.event_name == 'workflow_dispatch' && env.ARTIFACT_NAME != null
+      #   uses: azure/trusted-signing-action@v0.5.11
+      #   with:
+      #     azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+      #     azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}
+      #     azure-client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+      #     endpoint: https://weu.codesigning.azure.net/
+      #     code-signing-account-name: OPENGISch
+      #     certificate-profile-name: OPENGISch
+      #     files-folder: ${{ env.CMAKE_BUILD_DIR }}
+      #     files-folder-filter: exe,msi
+      #     file-digest: SHA256
+      #     timestamp-rfc3161: http://timestamp.acs.microsoft.com
+      #     timestamp-digest: SHA256
 
       - name: 📦 Upload package
         if: ${{ env.ARTIFACT_NAME != null }}
@@ -191,15 +191,15 @@ jobs:
           ruby-version: '3.4' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
-      - name: 🍺 Upload to S3
-        if: github.event_name == 'release' && startsWith(github.ref, 'refs/tags/v')
-        env:
-          S3_BUCKET: qfieldapks
-          S3_REGION: ch-dk-2
-          S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY}}
-          S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY}}
-        run: |
-          bundle exec fastlane windows upload_s3 exe:${{ env.ARTIFACT_PATHNAME }}
+      # - name: 🍺 Upload to S3
+      #   if: github.event_name == 'release' && startsWith(github.ref, 'refs/tags/v')
+      #   env:
+      #     S3_BUCKET: qfieldapks
+      #     S3_REGION: ch-dk-2
+      #     S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY}}
+      #     S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY}}
+      #   run: |
+      #     bundle exec fastlane windows upload_s3 exe:${{ env.ARTIFACT_PATHNAME }}
 
       - name: 📮 Upload debug symbols
         if: ${{ env.SENTRY_AUTH_TOKEN != '' }}
@@ -213,7 +213,8 @@ jobs:
     name: deploy (ms store)
     runs-on: windows-2022
 
-    if: github.event_name == 'release' && startsWith(github.ref, 'refs/tags/v')
+    if: false
+    # if: github.event_name == 'release' && startsWith(github.ref, 'refs/tags/v')
 
     needs: build
 
