@@ -42,21 +42,21 @@ export CI_RUN_NUMBER=${GITHUB_RUN_NUMBER}
 
 if [[ "${CI_TAG}" ]]; then
 	export IOS_CODE_SIGN_IDENTITY="Apple Distribution"
-	export IOS_APP_IDENTIFIER="ch.opengis.qfield"
-	export IOS_PROVISIONING_PROFILE_SPECIFIER="match AppStore ch.opengis.qfield"
+	export IOS_APP_IDENTIFIER="fi.nls.qfield"
+	export IOS_PROVISIONING_PROFILE_SPECIFIER="match AppStore fi.nls.qfield"
 	export IOS_EXPORT_METHOD="app-store"
 	export IOS_SIGN_TYPE="appstore"
 elif [[ ${GITHUB_REF} == "master" && ${CI_PULL_REQUEST} == "false" ]]; then
 	# To be improved for nightly builds / beta...
 	export IOS_CODE_SIGN_IDENTITY="Apple Development"
-	export IOS_APP_IDENTIFIER="ch.opengis.qfield-dev"
-	export IOS_PROVISIONING_PROFILE_SPECIFIER="match Development ch.opengis.qfield-dev"
+	export IOS_APP_IDENTIFIER="fi.nls.qfield-dev"
+	export IOS_PROVISIONING_PROFILE_SPECIFIER="match Development fi.nls.qfield-dev"
 	export IOS_EXPORT_METHOD="development"
 	export IOS_SIGN_TYPE="development"
 else
 	export IOS_CODE_SIGN_IDENTITY="Apple Development"
-	export IOS_APP_IDENTIFIER="ch.opengis.qfield-dev"
-	export IOS_PROVISIONING_PROFILE_SPECIFIER="match Development ch.opengis.qfield-dev"
+	export IOS_APP_IDENTIFIER="fi.nls.qfield-dev"
+	export IOS_PROVISIONING_PROFILE_SPECIFIER="match Development fi.nls.qfield-dev"
 	export IOS_EXPORT_METHOD="development"
 	export IOS_SIGN_TYPE="development"
 fi
