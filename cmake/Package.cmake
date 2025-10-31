@@ -97,7 +97,7 @@ if(ANDROID AND ANDROIDDEPLOYQT_EXECUTABLE)
     foreach(JAVA_FILE ${JAVA_FILES})
       message(STATUS ${JAVA_FILE})
       file(READ ${JAVA_FILE} CONTENT)
-      string(REGEX REPLACE "ch.opengis.qfield" "ch.opengis.${APP_PACKAGE_NAME}"
+      string(REGEX REPLACE "fi.nls.qfield" "fi.nls.${APP_PACKAGE_NAME}"
                            CONTENT "${CONTENT}")
       file(WRITE ${JAVA_FILE} "${CONTENT}")
     endforeach()
