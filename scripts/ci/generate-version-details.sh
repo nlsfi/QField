@@ -30,6 +30,7 @@ if [[ -n ${CI_TAG} ]]; then
 	export APP_VERSION_STR
 	export APK_VERSION_CODE
 	export APP_ENV="prod"
+	export QFC_URL="${QFC_URL_PROD}"
 elif [[ ${CI_PULL_REQUEST} = false ]]; then
 	echo "Building dev (nightly)"
 	TRIPLET_NUMBER=$(arch_to_build_number ${TRIPLET})
@@ -55,6 +56,7 @@ elif [[ ${CI_PULL_REQUEST} = false ]]; then
 		export APK_VERSION_CODE=0$((2020400 + CI_RUN_NUMBER))${TRIPLET_NUMBER}
 	fi
 	export APP_ENV="dev"
+	export QFC_URL="${QFC_URL_DEV}"
 else
 	echo "Building pull request beta"
 	if [[ ${ALL_FILES_ACCESS} == "ON" ]]; then
@@ -70,6 +72,7 @@ else
 	export APP_VERSION_STR="PR${CI_PULL_REQUEST_NUMBER} - ${APP_VERSION_NAME}"
 	export APK_VERSION_CODE="1"
 	export APP_ENV="pr"
+	export QFC_URL="${QFC_URL_DEV}"
 fi
 
 echo "Arch number: ${TRIPLET_NUMBER}"
