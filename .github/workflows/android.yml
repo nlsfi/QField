@@ -140,6 +140,8 @@ jobs:
       - name: 🌱 Install dependencies and generate project files
         env:
           WORKSPACE: ${{ github.workspace }}
+          QFC_URL_PROD: ${{ secrets.QFC_URL_PROD }}
+          QFC_URL_DEV: ${{ secrets.QFC_URL_DEV }}
         run: |
           TRIPLET=${{ matrix.triplet }} ALL_FILES_ACCESS=${{ matrix.all_files_access }} source ./scripts/version_number.sh
           TRIPLET=${{ matrix.triplet }} ALL_FILES_ACCESS=${{ matrix.all_files_access }} source ./scripts/ci/generate-version-details.sh
@@ -161,6 +163,7 @@ jobs:
                 -D APP_PACKAGE_NAME="${APP_PACKAGE_NAME}" \
                 -D APP_ICON="${APP_ICON}" \
                 -D APP_NAME="${APP_NAME}" \
+                -D QFC_URL="${QFC_URL}" \
                 -D NUGET_USERNAME=opengisch \
                 -D NUGET_TOKEN=${{ secrets.GITHUB_TOKEN }} \
                 -D SENTRY_DSN=${{ secrets.SENTRY_DSN }} \
