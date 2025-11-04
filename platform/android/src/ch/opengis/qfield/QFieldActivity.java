@@ -149,6 +149,7 @@ public class QFieldActivity extends QtActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         prepareQtActivity();
         super.onCreate(savedInstanceState);
     }
