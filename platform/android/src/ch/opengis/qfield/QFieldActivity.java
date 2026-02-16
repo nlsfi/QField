@@ -31,7 +31,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package fi.nls.qfield;
+package ch.opengis.qfield;
 
 import android.Manifest;
 import android.app.Activity;
@@ -80,7 +80,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
-import fi.nls.qfield.QFieldUtils;
+import ch.opengis.qfield.QFieldUtils;
 import fi.nls.qfield.R;
 import io.sentry.android.core.SentryAndroid;
 import java.io.BufferedInputStream;

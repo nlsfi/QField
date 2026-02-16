@@ -29,7 +29,7 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package fi.nls.qfield;
+package ch.opengis.qfield;
 
 import android.app.Notification;
 import android.app.NotificationChannel;

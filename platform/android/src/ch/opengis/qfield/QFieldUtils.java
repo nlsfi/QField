@@ -15,7 +15,7 @@
  *                                                                         *
  ***************************************************************************/
 
-package fi.nls.qfield;
+package ch.opengis.qfield;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
