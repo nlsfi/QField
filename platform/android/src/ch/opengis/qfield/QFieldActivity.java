@@ -81,7 +81,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 import ch.opengis.qfield.QFieldUtils;
-import fi.nls.qfield.R;
+import ch.opengis.qfield.R;
 import io.sentry.android.core.SentryAndroid;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -885,7 +885,7 @@ public class QFieldActivity extends QtActivity {
                     resourceTempFilePath = tempFile.getAbsolutePath();
 
                     Uri fileURI = FileProvider.getUriForFile(
-                        this, "fi.nls.qfield.fileprovider", tempFile);
+                        this, "ch.opengis.qfield.fileprovider", tempFile);
 
                     Log.d("QField",
                           "Camera temporary file uri: " + fileURI.toString());
@@ -946,7 +946,7 @@ public class QFieldActivity extends QtActivity {
             Uri contentUri = Build.VERSION.SDK_INT < 24
                                  ? Uri.fromFile(resourceFile)
                                  : FileProvider.getUriForFile(
-                                       this, "fi.nls.qfield.fileprovider",
+                                       this, "ch.opengis.qfield.fileprovider",
                                        resourceCacheFile);
 
             Intent intent =
@@ -1273,7 +1273,7 @@ public class QFieldActivity extends QtActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         try {
-                            Uri uri = Uri.parse("package:fi.nls.qfield");
+                            Uri uri = Uri.parse("package:ch.opengis.qfield");
                             Intent intent = new Intent(
                                 Settings
                                     .ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,

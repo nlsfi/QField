@@ -58,7 +58,7 @@ android {
 
     ndkVersion = '@ANDROID_NDK_VERSION@'
     compileSdkVersion = @ANDROID_TARGET_PLATFORM@
-    namespace = 'fi.nls.@APP_PACKAGE_NAME@'
+    namespace = 'ch.opengis.@APP_PACKAGE_NAME@'
 
     sourceSets {
         main {
@@ -87,6 +87,7 @@ android {
     defaultConfig {
       minSdkVersion = @ANDROID_PLATFORM_INT@
       targetSdkVersion = @ANDROID_TARGET_PLATFORM@
+      applicationId = 'fi.nls.@APP_PACKAGE_NAME@'
       ndk {
         abiFilters "@ANDROID_ABI@"
       }
